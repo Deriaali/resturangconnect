@@ -1,26 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Header from './components/header';
+import BookingPage from './pages/bookingPage';
+import HomePage from './pages/homePage';
+
+export interface IAppProps {}
+
+const App: React.FunctionComponent<IAppProps> = (props) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <BrowserRouter>
+  <Header />
+  <Routes>
+    <Route path="/" element={<HomePage />}/>
+    <Route path="/boka" element={<BookingPage />}/>
+  </Routes>
+  </BrowserRouter>
   );
-}
+};
 
 export default App;
