@@ -23,10 +23,10 @@ const Header: React.FunctionComponent<IHeaderProps> = (props) => {
           <li className="nav-item dropdown">
             <a className="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Meny</a>
             <div className="dropdown-menu" aria-labelledby="dropdown01">
-              <a className="dropdown-item" href="#">Efterätter</a>
-              <a className="dropdown-item" href="#">Förrätter</a>
-              <a className="dropdown-item" href="#">Varmrätter</a>
-              <a className="dropdown-item" href="#">Vegetarisk</a>
+            <Link to="/efterätter"><a className="dropdown-item" href="#">Efterätter</a></Link>
+            <Link to="/förätter"><a className="dropdown-item" href="#">Förrätter</a></Link>
+            <Link to="/varmrätter"><a className="dropdown-item" href="#">Varmrätter</a></Link>
+            <Link to="/vegetarisk"><a className="dropdown-item" href="#">Vegetarisk</a></Link>
             </div>
           </li>
         </ul>
