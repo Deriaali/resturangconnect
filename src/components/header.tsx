@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { IMenu } from "../models/IMenu";
+import { Menu } from "../models/Menu";
+import "./header.scss"
 
-export interface IHeaderProps {}
+export interface IHeaderProps {};
+console.log(Menu);
 
 const Header: React.FunctionComponent<IHeaderProps> = (props) => {
   return (
