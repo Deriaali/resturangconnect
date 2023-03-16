@@ -14,15 +14,21 @@ const Starters: React.FunctionComponent<IStartersProps> = (props) => {
   <p className="lead">Förätter</p>
 </div>
 
+<>
+<div className='menuContainer'>
 {Menu.map((menu) => {
   if(menu.type.localeCompare("start") === 0){
 return <>
-<img src={menu.imageURL}></img>
-<h4>{menu.name}</h4>
-<h4>{menu.price}:-</h4>
+<div className='productContainer'>
+<img src={menu.imageURL} loading="lazy" ></img>
+<section className='productContainer__text'>
+<span>{menu.name}</span>
+<span>{menu.price}:-</span>
+</section>
+</div>
 </>}
-})};
-
+})}
+</div></>
 </main>
   </>
   );
