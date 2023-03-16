@@ -127,9 +127,9 @@ export default class Admin extends Component<Props, State> {
 
               <Link
                 to={"/booking/"+currentBooking._id}
-                className="badge badge-warning"
+                className="btn btn-warning"
               >
-                Edit
+                Ändra
               </Link>
             </div>
           ) : (
