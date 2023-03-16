@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export interface IHeaderProps {}
 
@@ -28,6 +28,9 @@ const Header: React.FunctionComponent<IHeaderProps> = (props) => {
             <Link to="/varmrätter"><a className="dropdown-item" href="#">Varmrätter</a></Link>
             <Link to="/vegetarisk"><a className="dropdown-item" href="#">Vegetarisk</a></Link>
             </div>
+          </li>
+          <li className="nav-item active">
+          <Link to="/admin"><a className="nav-link" href="#">Admin<span className="sr-only">(current)</span></a></Link>
           </li>
         </ul>
       </div>
