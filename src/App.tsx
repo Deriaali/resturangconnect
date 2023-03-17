@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
+import "./App.scss";
 
 import Header from './components/header';
 import Admin from './pages/admin';
@@ -18,7 +18,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
+        <nav className="navbar navbar-expand navbar-dark">
           <Link to={"/"} className="navbar-brand">
             Hem
           </Link>

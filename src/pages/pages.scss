@@ -1,0 +1,51 @@
+body{
+background-color: rgb(24, 1, 0);
+background-image: url(https://www.hdwallpapers.in/download/brown_shades_wood_background_hd_brown_aesthetic-1920x1080.jpg);
+background-size: cover;
+color: white;
+}
+
+li{
+  color: black;
+}
+
+.menuContainer{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+   
+}
+
+.productContainer{
+
+    
+    height: 350px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+
+  img {
+    background-size: cover;
+    height: 250px;
+    width: 100%;
+}  
+
+&__text{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    
+    
+    
+
+  span{
+    font-size: 35px;
+    
+}  
+}
+
+
+
+}
+
