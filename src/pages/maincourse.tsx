@@ -1,6 +1,6 @@
 import React, { lazy } from 'react';
 import { Menu } from '../models/Menu';
-import './maincourse.scss';
+import './pages.scss';
 
 export interface IMainCourseProps {}
 
