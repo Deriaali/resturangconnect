@@ -164,7 +164,7 @@ export default class BookingPage extends Component<Props, State> {
                   <div className="form-group">
                     <label htmlFor="time">Time</label>
                     <select
-                      className="form-control"
+                      className="custom-select"
                       id="time"
                       required
                       value={time}

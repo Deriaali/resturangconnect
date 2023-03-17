@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import "./header.scss"
 
-export interface IHeaderProps {}
+export interface IHeaderProps {};
 
 const Header: React.FunctionComponent<IHeaderProps> = (props) => {
   return (
     <>
-        <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-md navbar-dark">
       <a className="navbar-brand" href="#">Resturant Connect</a>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>

@@ -191,24 +191,10 @@ export default class Booking extends Component<Props, State> {
               </div>
             </form>
 
-            {currentBooking.published ? (
-              <button
-                className="badge badge-primary mr-2"
-                onClick={() => this.updatePublished(false)}
-              >
-                UnPublish
-              </button>
-            ) : (
-              <button
-                className="badge badge-primary mr-2"
-                onClick={() => this.updatePublished(true)}
-              >
-                Publish
-              </button>
-            )}
+            
 
             <button
-              className="badge badge-danger mr-2"
+              className="btn btn-danger mr-2"
               onClick={this.deleteTutorial}
             >
               Delete
@@ -216,7 +202,7 @@ export default class Booking extends Component<Props, State> {
 
             <button
               type="submit"
-              className="badge badge-success"
+              className="btn btn-success"
               onClick={this.updateBooking}
             >
               Update

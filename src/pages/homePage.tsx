@@ -1,4 +1,7 @@
 import React from 'react';
+import { Link, Route } from 'react-router-dom';
+
+
 
 
 export interface IHomePageProps {}
@@ -8,9 +11,9 @@ const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
   <>
   <main role="main" className="container">
 
-<div className="starter-template mt-5">
-  <h1>Första Sida</h1>
-  <p className="lead">Första sidan</p>
+<div className="starter-template mt-5 homeDiv">
+  <h1>Resturang</h1>
+  <p className="lead">Välkommen</p>
 </div>
 
 </main>
