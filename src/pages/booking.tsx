@@ -25,7 +25,7 @@ export default class Booking extends Component<Props, State> {
     this.getBooking = this.getBooking.bind(this);
     this.updatePublished = this.updatePublished.bind(this);
     this.updateBooking = this.updateBooking.bind(this);
-    this.deleteTutorial = this.deleteTutorial.bind(this);
+    this.deleteBooking = this.deleteBooking.bind(this);
 
     this.state = {
       currentBooking: {
@@ -41,8 +41,24 @@ export default class Booking extends Component<Props, State> {
     };
   }
 
+  
+
   componentDidMount() {
     this.getBooking(this.props.match.params.id);
+  }
+
+  getBooking(id: string) {
+    BookingDataService.get(id)
+      .then((response: any) => {
+        this.setState({
+          currentBooking: response.data[0],
+        });
+        console.log(response.data[0])
+      })
+      .catch((e: Error) => {
+        console.log(e);
+        console.log(id)
+      });
   }
 
   onChangeDate(e: ChangeEvent<HTMLInputElement>) {
@@ -58,18 +74,18 @@ export default class Booking extends Component<Props, State> {
     });
   }
 
-  onChangeNumberOfGuests(e: ChangeEvent<HTMLInputElement>) {
-    const numberOfGuests = e.target.valueAsNumber;
+  onChangeNumberOfGuests(e: ChangeEvent<HTMLSelectElement>) {
+    const numberOfGuests = e.target.value;
 
-    this.setState((prevState) => ({
+    this.setState(prevState => ({
       currentBooking: {
-        ...prevState.currentBooking,
-        numberOfGuests: numberOfGuests,
+        ...prevState.currentBooking, // <-- copy other nested state
+        numberOfGuests: parseInt(numberOfGuests),
       },
     }));
   }
 
-  onChangeTime(e: ChangeEvent<HTMLInputElement>) {
+  onChangeTime(e: ChangeEvent<HTMLSelectElement>) {
     const time = e.target.value;
 
     this.setState((prevState) => ({
@@ -80,24 +96,11 @@ export default class Booking extends Component<Props, State> {
     }));
   }
 
-  getBooking(id: string) {
-    BookingDataService.get(id)
-      .then((response: any) => {
-        this.setState({
-          currentBooking: response.data,
-        });
-        console.log(this.state.currentBooking._id);
-      })
-      .catch((e: Error) => {
-        console.log(e);
-        console.log(id)
-      });
-  }
 
   updatePublished(status: boolean) {
     const data: BookingsRestaurant = {
       _id: this.state.currentBooking._id,
-      restaurantId: "6410c94250c6ca4f37fce84d",
+      restaurantId: this.state.currentBooking.restaurantId,
       date: this.state.currentBooking.date,
       time: this.state.currentBooking.time,
       numberOfGuests: this.state.currentBooking.numberOfGuests,
@@ -123,7 +126,14 @@ export default class Booking extends Component<Props, State> {
 
   updateBooking() {
     BookingDataService.update(
-      this.state.currentBooking,
+      {
+        "id": this.state.currentBooking._id,
+        "restaurantId": this.state.currentBooking.restaurantId,
+        "date": this.state.currentBooking.date,
+        "time": this.state.currentBooking.time,
+        "numberOfGuests":this.state.currentBooking.numberOfGuests,
+        "customerId": this.state.currentBooking.customerId
+      },
       this.state.currentBooking._id
     )
       .then((response: any) => {
@@ -134,15 +144,15 @@ export default class Booking extends Component<Props, State> {
       })
       .catch((e: Error) => {
         console.log(e);
-        console.log(this.state.currentBooking._id)
+        console.log(this.state.currentBooking)
       });
   }
 
-  deleteTutorial() {
+  deleteBooking() {
     BookingDataService.delete(this.state.currentBooking._id)
       .then((response: any) => {
         console.log(response.data);
-        this.props.history.push("/");
+        this.props.history.push("/admin");
       })
       .catch((e: Error) => {
         console.log(e);
@@ -157,57 +167,73 @@ export default class Booking extends Component<Props, State> {
         {currentBooking ? (
           <div className="edit-form">
             <h4>Uppdatera bokning</h4>
+            <br></br>
+            <p className="text-success">{this.state.message}</p>
             <form>
               <div className="form-group">
-                <label htmlFor="title">Datum</label>
+                <label htmlFor="title">Datum:</label>
                 <input
-                  type="text"
+                  type="date"
                   className="form-control"
                   id="title"
-                  value={this.state.currentBooking._id}
+                  value={currentBooking.date}
                   onChange={this.onChangeDate}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="description">Tid</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="description"
-                  value={currentBooking._id}
-                  onChange={this.onChangeTime}
-                />
+                <label htmlFor="description">Tid:</label>
+                <select
+                      className="custom-select"
+                      id="time"
+                      required
+                      onChange={this.onChangeTime}
+                      value={currentBooking.time}
+                      name="time"
+                    >
+                      <option value="18:00">18:00</option>
+                      <option value="19:00">19:00</option>
+                      <option value="20:00">20:00</option>
+                      <option value="21:00">21:00</option>
+                    </select>
               </div>
 
               <div className="form-group">
-                <label htmlFor="description">Gäster</label>
-                <input
-                  type="text"
+                <label htmlFor="Antal personer">Antal personer:</label>
+                <select
                   className="form-control"
                   id="description"
                   value={currentBooking.numberOfGuests}
                   onChange={this.onChangeNumberOfGuests}
-                />
+                >
+
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                </select>
               </div>
             </form>
 
-            
-
-            <button
-              className="btn btn-danger mr-2"
-              onClick={this.deleteTutorial}
-            >
-              Delete
-            </button>
-
             <button
               type="submit"
-              className="btn btn-success"
+              className="btn btn-success  mr-2"
               onClick={this.updateBooking}
             >
-              Update
+              Uppdatera
             </button>
-            <p>{this.state.message}</p>
+
+            <button
+              className="btn btn-danger"
+              onClick={this.deleteBooking}
+            >
+              Radera
+            </button>
           </div>
         ) : (
           <div>

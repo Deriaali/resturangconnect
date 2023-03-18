@@ -95,8 +95,10 @@ export default class Admin extends Component<Props, State> {
                   key={index}
                 >
                   {bookings.date}
+                  
                 </li>
               ))}
+              
           </ul>
 
         </div>

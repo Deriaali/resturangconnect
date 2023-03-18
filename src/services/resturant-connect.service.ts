@@ -16,7 +16,7 @@ class RestaurantDataService {
     return http.post<BookingCreate>("/booking/create", data);
   }
 
-  update(data: BookingsRestaurant, id: any) {
+  update(data: UpdateBooking, id: any) {
     return http.put<any>(`/booking/update/${id}`, data);
   }
 

@@ -1,6 +1,8 @@
 import { Component, ChangeEvent, useState } from "react";
 import BookingDataService from "../services/resturant-connect.service";
 import BookingCreate from "../interfaces/BookingCreate";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 
 type Props = {};
@@ -8,7 +10,6 @@ type Props = {};
 type State = BookingCreate & {
   submitted: boolean
 };
-
 
 export default class BookingPage extends Component<Props, State> {
   constructor(props: Props) {
@@ -41,6 +42,8 @@ export default class BookingPage extends Component<Props, State> {
     };
   }
 
+  
+
   onChangeDate(e: ChangeEvent<HTMLInputElement>) {
     this.setState({
       date: e.target.value
@@ -52,11 +55,11 @@ export default class BookingPage extends Component<Props, State> {
     this.setState({ time: element.value });
 }
 
-  onChangeNumberOfGuests(e: ChangeEvent<HTMLInputElement>) {
-    this.setState({
-      numberOfGuests: e.target.valueAsNumber
-    });
-  }
+private onChangeNumberOfGuests = (event: React.FormEvent<HTMLSelectElement>) => {
+  const element = event.target as HTMLSelectElement;
+  this.setState({ numberOfGuests: parseInt(element.value) });
+}
+
 
   onChangeName(e: ChangeEvent<HTMLInputElement>) {
     this.setState({ customer: { ...this.state.customer, name: e.target.value} });
@@ -110,6 +113,7 @@ export default class BookingPage extends Component<Props, State> {
       })
       .catch((e: Error) => {
         console.log(e);
+        console.log(data)
       });
   }
 
@@ -136,13 +140,10 @@ export default class BookingPage extends Component<Props, State> {
 
     return (
       <>
-      <div className="submit-form">
+      <div className="container">
         {submitted ? (
           <div>
-            <h4>You submitted successfully!</h4>
-            <button className="btn btn-success" onClick={this.newBooking}>
-              Add
-            </button>
+            <h4>Bokningen är nu genomförd</h4>
           </div>
         ) : (
 
@@ -150,16 +151,16 @@ export default class BookingPage extends Component<Props, State> {
                 
                 <div>
                   <div className="form-group">
-                    <label htmlFor="date">Date</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="date"
-                      required
-                      value={date}
-                      onChange={this.onChangeDate}
-                      name="date" />
+                    <label htmlFor="date">Datum</label>
+                    <input 
+                    type="date" 
+                    name="boka"
+                    className="form-control"
+                    onChange={this.onChangeDate}
+                    />
                   </div>
+                  
+
 
                   <div className="form-group">
                     <label htmlFor="time">Time</label>
@@ -181,14 +182,24 @@ export default class BookingPage extends Component<Props, State> {
 
                   <div className="form-group">
                     <label htmlFor="guests">Gäster</label>
-                    <input
-                      type="number"
+                    <select
                       className="form-control"
                       id="guests"
                       required
                       value={numberOfGuests}
                       onChange={this.onChangeNumberOfGuests}
-                      name="guests" />
+                      name="guests">
+                        <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      </select>
                   </div>
 
                   <div className="form-group">
@@ -240,7 +251,7 @@ export default class BookingPage extends Component<Props, State> {
                   </div>
 
                   <button onClick={this.saveBooking} className="btn btn-success">
-                    Submit
+                    Boka
                   </button>
                 </div></>
         )}
