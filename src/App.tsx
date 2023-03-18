@@ -3,7 +3,6 @@ import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
 
-import Header from './components/header';
 import Admin from './pages/admin';
 import AllBookings from './pages/allBookings';
 import BookingPage from './pages/bookingPage';
@@ -13,8 +12,9 @@ import MainCourse from './pages/maincourse';
 import Starters from './pages/starters';
 import Vegetarian from './pages/vegetarian';
 import Booking from "./pages/booking";
+import React from "react";
 
-class App extends Component {
+class App extends React.Component{
   render() {
     return (
       <div>
