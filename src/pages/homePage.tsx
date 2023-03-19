@@ -12,7 +12,7 @@ const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
   <main role="main" className="container">
 
 <div className="starter-template mt-5 homeDiv">
-  <h1>Resturang</h1>
+  <h1>Resturant Connect</h1>
   <p className="lead">Välkommen</p>
 </div>
 

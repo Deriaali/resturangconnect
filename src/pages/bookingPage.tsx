@@ -140,7 +140,7 @@ private onChangeNumberOfGuests = (event: React.FormEvent<HTMLSelectElement>) => 
 
     return (
       <>
-      <div className="container">
+      <div className="container col-8">
         {submitted ? (
           <div>
             <h4>Bokningen är nu genomförd</h4>
@@ -163,7 +163,7 @@ private onChangeNumberOfGuests = (event: React.FormEvent<HTMLSelectElement>) => 
 
 
                   <div className="form-group">
-                    <label htmlFor="time">Time</label>
+                    <label htmlFor="time">Tid</label>
                     <select
                       className="custom-select"
                       id="time"
@@ -174,8 +174,6 @@ private onChangeNumberOfGuests = (event: React.FormEvent<HTMLSelectElement>) => 
                     >
                       <option value=""></option>
                       <option value="18:00">18:00</option>
-                      <option value="19:00">19:00</option>
-                      <option value="20:00">20:00</option>
                       <option value="21:00">21:00</option>
                     </select>
                   </div>
@@ -250,7 +248,7 @@ private onChangeNumberOfGuests = (event: React.FormEvent<HTMLSelectElement>) => 
                       name="phone" />
                   </div>
 
-                  <button onClick={this.saveBooking} className="btn btn-success">
+                  <button onClick={this.saveBooking} className="btn btn-success mb-3">
                     Boka
                   </button>
                 </div></>
